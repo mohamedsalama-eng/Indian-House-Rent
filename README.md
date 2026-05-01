@@ -11,8 +11,8 @@ An end-to-end machine learning project to predict monthly rent (₹) for residen
 | **Type** | Supervised Regression |
 | **Target** | Monthly Rent (₹) |
 | **Best Model** | Random Forest (tuned) |
-| **Test RMSE** | ~₹8,807 |
-| **R²** | ~0.805 |
+| **Test MAE** | ~₹11,000 |
+| **R²** | ~0.66 |
 | **Dataset size** | ~4,700 rows |
 
 ---
@@ -127,7 +127,7 @@ A `ProbabilityImputer` (fills NaN by sampling from the column's frequency distri
 
 ---
 
-##  Results
+## 📈 Results
 
 | Model | CV RMSE (log) | Test RMSE (₹) | MAE (₹) | R² |
 |---|---|---|---|---|
@@ -137,51 +137,29 @@ A `ProbabilityImputer` (fills NaN by sampling from the column's frequency distri
 | SVR | 0.3934 | ₹9,142 | ₹6,207 | 0.782 |
 | XGBoost | 0.3991 | ₹9,220 | ₹6,029 | 0.778 |
 
-**Tuned Random Forest (GridSearchCV):**
-- CV RMSE: 0.3772
-- Test RMSE: ₹8,807
+**Tuned Random Forest (GridSearchCV) — Final Test Results:**
+- RMSE: ₹28,713
+- MAE: ₹11,025
+- R²: 0.6604
 - Best params: `max_depth=20`, `max_features='sqrt'`, `min_samples_split=5`, `n_estimators=200`
+
+> The gap between cross-validation RMSE and final test RMSE reflects the high variance
+> in Indian rental prices — a median rent of ₹16,000 alongside properties exceeding
+> ₹3,000,000 makes this a fundamentally challenging regression problem.
   
 ---
 
-##  Business Value
+## 💼= Business Value
 
-This model transforms raw property attributes into a fair market rent estimate — 
-automating decisions that previously required human expertise or manual market research.
+**For a real estate app (MagicBricks, 99acres, NoBroker):**
 
-### Real Estate App Integration (e.g. MagicBricks, 99acres, NoBroker)
+- **Landlords** get an instant suggested rent when listing a property instead of guessing
+- **Tenants** see a fair price indicator ( Fair /  Overpriced /  Great Deal) on every listing
+- **Platform trust** increases by automatically flagging suspicious listings before they go live
+- **Investors** can estimate expected rental yield on a property before purchasing
 
-**1. Instant Rent Estimation for Landlords**
-A landlord listing a new property gets an instant suggested price instead of 
-guessing or manually checking similar listings:
-> *"Based on your 3 BHK, 1200 sqft, Semi-Furnished flat in Bandra West — 
-> suggested rent: ₹42,000/month"*
-
-**2. Fair Price Indicator for Tenants**
-When a tenant views a listing, display a dynamic badge:
->  Fair Price /  Overpriced by ~₹11,000 /  Great Deal
-
-Builds user trust and increases platform engagement.
-
-**3. Automated Listing Validation**
-Flag suspicious listings automatically before they go live — e.g. a 2 BHK in 
-Kolkata listed at ₹2,00,000/month gets flagged as an outlier. Reduces fraud 
-and fake listings without manual review.
-
-**4. Value-Based Search Filter**
-Allow tenants to filter by *"Show underpriced listings only"* — properties where 
-actual rent is below the model's predicted fair price. Powerful for budget-conscious users.
-
-### Beyond Real Estate
-
-**5. Bank & Loan Valuation**
-Estimate rental yield instantly for home loan applications — without sending a 
-human appraiser to every property.
-
-**6. Property Investment Tool**
-Help investors answer: *"If I buy this flat in Hyderabad, what monthly rent can 
-I realistically expect?"* — based on location, size, furnishing, and building type.
-
+> On average the model predicts rent within ₹11,025 (MAE) — useful enough for
+> pricing guidance and fair-value detection across the majority of the market.
 
 ##  Known Limitations
 
