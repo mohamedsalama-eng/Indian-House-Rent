@@ -127,15 +127,15 @@ A `ProbabilityImputer` (fills NaN by sampling from the column's frequency distri
 
 ---
 
-## 📈 Results
+##  Results
 
-| Model | CV RMSE (log) | Test RMSE (₹) | MAE (₹) | R² |
-|---|---|---|---|---|
-| Linear Regression | 0.4216 | ₹12,615 | ₹7,534 | 0.585 |
-| Decision Tree | 0.5431 | ₹12,017 | ₹7,595 | 0.623 |
-| **Random Forest** | **0.3906** | **₹8,644** | **₹5,647** | **0.805** |
-| SVR | 0.3934 | ₹9,142 | ₹6,207 | 0.782 |
-| XGBoost | 0.3991 | ₹9,220 | ₹6,029 | 0.778 |
+| Model | CV RMSE (log) | CV STD | Test RMSE (₹) | MAE (₹) | R² |
+|---|---|---|---|---|---|
+| Linear Regression | 0.4749 | 0.0223 | ₹33,367 | ₹12,830 | 0.541 |
+| Decision Tree | 0.6488 | 0.0249 | ₹37,302 | ₹16,340 | 0.427 |
+| **Random Forest** | **0.4641** | **0.0174** | **₹27,194** | **₹11,071** | **0.695** |
+| SVR | 0.4629 | 0.0225 | ₹30,381 | ₹11,875 | 0.620 |
+| XGBoost | 0.4750 | 0.0179 | ₹30,013 | ₹12,126 | 0.629 |
 
 **Tuned Random Forest (GridSearchCV) — Final Test Results:**
 - RMSE: ₹28,713
@@ -143,13 +143,14 @@ A `ProbabilityImputer` (fills NaN by sampling from the column's frequency distri
 - R²: 0.6604
 - Best params: `max_depth=20`, `max_features='sqrt'`, `min_samples_split=5`, `n_estimators=200`
 
-> The gap between cross-validation RMSE and final test RMSE reflects the high variance
-> in Indian rental prices — a median rent of ₹16,000 alongside properties exceeding
-> ₹3,000,000 makes this a fundamentally challenging regression problem.
+> The high variance in Indian rental prices — median ₹16,000 vs properties
+> exceeding ₹3,000,000 across 6 cities with very different market dynamics —
+> makes this a fundamentally challenging regression problem. The model explains
+> 66% of rent variance and predicts within ₹11,025 on average.
   
 ---
 
-## 💼= Business Value
+##  Business Value
 
 **For a real estate app (MagicBricks, 99acres, NoBroker):**
 
