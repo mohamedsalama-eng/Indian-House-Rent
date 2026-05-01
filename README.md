@@ -141,25 +141,47 @@ A `ProbabilityImputer` (fills NaN by sampling from the column's frequency distri
 - CV RMSE: 0.3772
 - Test RMSE: ₹8,807
 - Best params: `max_depth=20`, `max_features='sqrt'`, `min_samples_split=5`, `n_estimators=200`
-
+  
 ---
 
-##  Feature Importances (Top 10)
+##  Business Value
 
-| Feature | Importance | Insight |
-|---|---|---|
-| `bathroom` | 0.145 | Strongest predictor — stronger than BHK |
-| `city_mumbai` | 0.123 | Mumbai is a completely separate market |
-| `point_of_contact_Contact Owner` | 0.120 | Agents = luxury, owners = budget |
-| `bhk` | 0.118 | More bedrooms = higher rent |
-| `total_floors` | 0.107 | Taller building = newer/luxury |
-| `size` | 0.106 | Property size |
-| `area_locality` | 0.100 | TargetEncoder successfully captured geographic signal |
-| `size_per_bhk` | 0.032 | Engineered feature contributed ✅ |
-| `days_since_posted` | 0.028 | Listing urgency |
-| `floor_ratio` | 0.022 | Relative floor position |
+This model transforms raw property attributes into a fair market rent estimate — 
+automating decisions that previously required human expertise or manual market research.
 
----
+### Real Estate App Integration (e.g. MagicBricks, 99acres, NoBroker)
+
+**1. Instant Rent Estimation for Landlords**
+A landlord listing a new property gets an instant suggested price instead of 
+guessing or manually checking similar listings:
+> *"Based on your 3 BHK, 1200 sqft, Semi-Furnished flat in Bandra West — 
+> suggested rent: ₹42,000/month"*
+
+**2. Fair Price Indicator for Tenants**
+When a tenant views a listing, display a dynamic badge:
+>  Fair Price /  Overpriced by ~₹11,000 /  Great Deal
+
+Builds user trust and increases platform engagement.
+
+**3. Automated Listing Validation**
+Flag suspicious listings automatically before they go live — e.g. a 2 BHK in 
+Kolkata listed at ₹2,00,000/month gets flagged as an outlier. Reduces fraud 
+and fake listings without manual review.
+
+**4. Value-Based Search Filter**
+Allow tenants to filter by *"Show underpriced listings only"* — properties where 
+actual rent is below the model's predicted fair price. Powerful for budget-conscious users.
+
+### Beyond Real Estate
+
+**5. Bank & Loan Valuation**
+Estimate rental yield instantly for home loan applications — without sending a 
+human appraiser to every property.
+
+**6. Property Investment Tool**
+Help investors answer: *"If I buy this flat in Hyderabad, what monthly rent can 
+I realistically expect?"* — based on location, size, furnishing, and building type.
+
 
 ##  Known Limitations
 
